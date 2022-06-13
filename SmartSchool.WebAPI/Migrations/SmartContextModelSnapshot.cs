@@ -15,6 +15,77 @@ namespace SmartSchool.WebAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0");
 
+            modelBuilder.Entity("SmartSchool.WebAPI.Models.Aluno", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Sobrenome")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Alunos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nome = "Marta",
+                            Sobrenome = "Kent",
+                            Telefone = "33225555"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nome = "Paula",
+                            Sobrenome = "Isabela",
+                            Telefone = "3354288"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nome = "Laura",
+                            Sobrenome = "Antonia",
+                            Telefone = "55668899"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nome = "Luiza",
+                            Sobrenome = "Maria",
+                            Telefone = "6565659"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Nome = "Lucas",
+                            Sobrenome = "Machado",
+                            Telefone = "565685415"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Nome = "Pedro",
+                            Sobrenome = "Alvares",
+                            Telefone = "456454545"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Nome = "Paulo",
+                            Sobrenome = "José",
+                            Telefone = "9874512"
+                        });
+                });
+
             modelBuilder.Entity("SmartSchool.WebAPI.Models.AlunoDisciplina", b =>
                 {
                     b.Property<int>("AlunoId")
@@ -239,80 +310,9 @@ namespace SmartSchool.WebAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SmartSchool_WebAPI.Models.Aluno", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Sobrenome")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Telefone")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Alunos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Nome = "Marta",
-                            Sobrenome = "Kent",
-                            Telefone = "33225555"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Nome = "Paula",
-                            Sobrenome = "Isabela",
-                            Telefone = "3354288"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Nome = "Laura",
-                            Sobrenome = "Antonia",
-                            Telefone = "55668899"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Nome = "Luiza",
-                            Sobrenome = "Maria",
-                            Telefone = "6565659"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Nome = "Lucas",
-                            Sobrenome = "Machado",
-                            Telefone = "565685415"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Nome = "Pedro",
-                            Sobrenome = "Alvares",
-                            Telefone = "456454545"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Nome = "Paulo",
-                            Sobrenome = "José",
-                            Telefone = "9874512"
-                        });
-                });
-
             modelBuilder.Entity("SmartSchool.WebAPI.Models.AlunoDisciplina", b =>
                 {
-                    b.HasOne("SmartSchool_WebAPI.Models.Aluno", "Aluno")
+                    b.HasOne("SmartSchool.WebAPI.Models.Aluno", "Aluno")
                         .WithMany("AlunosDisciplinas")
                         .HasForeignKey("AlunoId")
                         .OnDelete(DeleteBehavior.Cascade)

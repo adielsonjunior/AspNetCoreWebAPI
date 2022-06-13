@@ -1,7 +1,7 @@
 using SmartSchool.WebAPI.Models;
 using System.Collections.Generic;
 
-namespace SmartSchool_WebAPI.Models
+namespace SmartSchool.WebAPI.Models
 {
     public class Aluno
     {

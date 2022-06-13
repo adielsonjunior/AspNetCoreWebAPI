@@ -6,7 +6,7 @@ using System.Runtime.InteropServices.ComTypes;
 using SmartSchool.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using SmartSchool_WebAPI.Models;
+
 
 namespace SmartSchool.WebAPI.Data
 {

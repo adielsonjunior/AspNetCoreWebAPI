@@ -1,4 +1,4 @@
-using SmartSchool_WebAPI.Models;
+using SmartSchool.WebAPI.Models;
 
 namespace SmartSchool.WebAPI.Models
 {

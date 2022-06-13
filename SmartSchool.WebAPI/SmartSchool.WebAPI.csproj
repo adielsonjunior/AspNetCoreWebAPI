@@ -5,6 +5,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20220613193455_init.cs" />
     <Compile Remove="Migrations\20220613193455_init.Designer.cs" />
+    <Compile Remove="Migrations\20220613201903_init.cs" />
+    <Compile Remove="Migrations\20220613201903_init.Designer.cs" />
+    <Compile Remove="Migrations\20220613203014_init1.cs" />
+    <Compile Remove="Migrations\20220613203014_init1.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />

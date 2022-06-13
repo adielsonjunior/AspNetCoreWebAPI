@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Models;
-using SmartSchool_WebAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
