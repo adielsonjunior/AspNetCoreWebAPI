@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Models;
+using SmartSchool_WebAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,47 +14,31 @@ namespace SmartSchool.WebAPI.Controllers
     [ApiController]
     public class AlunoController : ControllerBase
     {
-        public List<Aluno> Alunos = new List<Aluno>() {
-            new Aluno(){
-                Id = 1,
-                Nome = "Marcos",
-                Sobrenome= "Magela",
-                Telefone = "12345688"
-            },
-            new Aluno(){
-                Id = 2,
-                Nome = "Marta",
-                Sobrenome = "Suplicy",
-                Telefone = "123456999"
-            },
 
-             new Aluno(){
-                Id = 2,
-                Nome = "Maria",
-                Sobrenome = "Luigi",
-                Telefone = "1234569999"
-            },
-        };
+        private readonly SmartContext _context;
 
-
-        public AlunoController() { }
-
+        public AlunoController(SmartContext context)
+        {
+            _context = context;
+        }
+   
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Alunos);
+             return Ok(_context.Alunos);
 
         }
-        
-        [HttpGet("{id:int}")]
-        public IActionResult GetbyId(int id) {
 
-            var aluno = Alunos.FirstOrDefault(a => a.Id == id);
+        [HttpGet("{id:int}")]
+        public IActionResult GetbyId(int id)
+        {
+
+            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
 
             if (aluno == null) return BadRequest();
 
             return Ok(aluno);
-        
+
         }
 
 
@@ -60,7 +46,7 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetbyName(string nome)
         {
 
-            var aluno = Alunos.FirstOrDefault(a => a.Nome.Contains(nome));
+            var aluno = _context.Alunos.FirstOrDefault(a => a.Nome.Contains(nome));
 
             if (aluno == null) return BadRequest();
 
@@ -71,7 +57,8 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPost("{nome}")]
         public IActionResult Post(Aluno aluno)
         {
-                  
+            _context.Add(aluno);
+            _context.SaveChanges();
             return Ok(aluno);
 
         }
@@ -80,6 +67,9 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Put(int id, Aluno aluno)
         {
 
+            _context.Update(aluno);
+            _context.SaveChanges();
+
             return Ok();
 
         }
@@ -87,7 +77,8 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Aluno aluno)
         {
-
+            _context.Update(aluno);
+            _context.SaveChanges();
             return Ok(aluno);
 
         }
@@ -96,11 +87,12 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Delete(int id)
         {
 
+            _context.Remove(id);
             return Ok();
 
         }
 
-      
+
 
     }
 
