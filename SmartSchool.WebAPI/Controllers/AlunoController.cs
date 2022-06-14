@@ -82,7 +82,7 @@ namespace SmartSchool.WebAPI.Controllers
             var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
             if (alu == null) return BadRequest("Aluno não encontrato.");
 
-            _context.Update(alu);
+            _context.Update(aluno);
             _context.SaveChanges();
             return Ok(aluno);
 
@@ -92,10 +92,11 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Delete(int id)
         {
 
-            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            var alu = _context.Alunos.FirstOrDefault(a => a.Id == id);
             if (alu == null) return BadRequest("Aluno não encontrato.");
 
             _context.Remove(alu);
+            _context.SaveChanges();
             return Ok();
 
         }
