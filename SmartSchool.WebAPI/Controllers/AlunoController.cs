@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
 using SmartSchool.WebAPI.Models;
 using System;
@@ -32,7 +33,7 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetbyId(int id)
         {
 
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Id == id);
+            var aluno = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
 
             if (aluno == null) return BadRequest();
 
@@ -45,7 +46,7 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult GetbyName(string nome)
         {
 
-            var aluno = _context.Alunos.FirstOrDefault(a => a.Nome.Contains(nome));
+            var aluno = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Nome.Contains(nome));
 
             if (aluno == null) return BadRequest();
 
@@ -53,7 +54,7 @@ namespace SmartSchool.WebAPI.Controllers
 
         }
 
-        [HttpPost("{nome}")]
+        [HttpPost]
         public IActionResult Post(Aluno aluno)
         {
             _context.Add(aluno);
@@ -65,6 +66,8 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Aluno aluno)
         {
+            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+           if (alu == null) return BadRequest("Aluno não encontrato.");
 
             _context.Update(aluno);
             _context.SaveChanges();
@@ -76,7 +79,10 @@ namespace SmartSchool.WebAPI.Controllers
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Aluno aluno)
         {
-            _context.Update(aluno);
+            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            if (alu == null) return BadRequest("Aluno não encontrato.");
+
+            _context.Update(alu);
             _context.SaveChanges();
             return Ok(aluno);
 
@@ -86,7 +92,10 @@ namespace SmartSchool.WebAPI.Controllers
         public IActionResult Delete(int id)
         {
 
-            _context.Remove(id);
+            var alu = _context.Alunos.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            if (alu == null) return BadRequest("Aluno não encontrato.");
+
+            _context.Remove(alu);
             return Ok();
 
         }
