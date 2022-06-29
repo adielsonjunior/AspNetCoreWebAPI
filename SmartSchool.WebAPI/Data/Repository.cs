@@ -112,21 +112,19 @@ namespace SmartSchool.WebAPI.Data
             return query.FirstOrDefault();
         }
 
-        public Professor[] GetAllProfessores(bool includeAlunos = false)
+        public Professor[] GetAllProfessores(bool includeDisciplinas = true)
         {
             IQueryable<Professor> query = _context.Professores;
 
-            if (includeAlunos)
+            if (includeDisciplinas)
             {
-                query = query.Include(d => d.Disciplinas)
-                              .ThenInclude(dis => dis.AlunosDisciplinas)
-                              .ThenInclude(a => a.Aluno);
-
+                query = query.Include(c => c.Disciplinas);
             }
 
-            query = query.AsNoTracking().OrderBy(p => p.Id);
+            query = query.AsNoTracking()
+                         .OrderBy(professor => professor.Id);
 
-            return query.ToArray();
+            return  query.ToArray();
 
         }
 

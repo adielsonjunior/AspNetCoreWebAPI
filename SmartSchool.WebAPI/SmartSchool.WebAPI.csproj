@@ -3,14 +3,7 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Migrations\20220613193455_init.cs" />
-    <Compile Remove="Migrations\20220613193455_init.Designer.cs" />
-    <Compile Remove="Migrations\20220613201903_init.cs" />
-    <Compile Remove="Migrations\20220613201903_init.Designer.cs" />
-    <Compile Remove="Migrations\20220613203014_init1.cs" />
-    <Compile Remove="Migrations\20220613203014_init1.Designer.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore.Tools" Version="3.1.0" />
@@ -18,5 +11,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.0" />
  
 
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTO\" />
   </ItemGroup>
 </Project>
